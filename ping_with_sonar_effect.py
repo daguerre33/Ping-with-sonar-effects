@@ -26,7 +26,7 @@ def ping(event):
 		d = []
 		d.append(os.system("ping %s -c 1" % host))
 		if d.__contains__(512) or d.__contains__(256):
-			print("Input data error. Please, give a real hostname os IP!")
+			print("Input data error. Please, give a real hostname or IP!")
 		else:
 			os.system("mplayer sonar_ping.mp3")
 			#instead of mplayer, you can use any other mp3 player starting from command line
@@ -57,7 +57,6 @@ button2.bind("<Button-1>", report)
 button3 = Button(window, text="Quit", fg="black", bd=5)
 button3.place(x=210, y=150)
 button3.bind("<Button-1>", quit)
-
 
 mainloop()
 
