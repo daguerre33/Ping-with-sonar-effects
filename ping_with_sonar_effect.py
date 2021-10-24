@@ -23,25 +23,21 @@ host_name.pack()
 def ping(event):
 	host = submit()
 	try:
-		d = []
-		d.append(os.system("ping %s -c 1" % host))
-		if d.__contains__(512) or d.__contains__(256):
+		ping_message = []
+		ping_message.append(os.system("ping %s -c 1" % host))
+		if ping_message.__contains__(512) or ping_message.__contains__(256): #These numbers are ping error codes. 
 			print("Input data error. Please, give a real hostname or IP!")
 		else:
-			os.system("mplayer sonar_ping.mp3")
-			#instead of mplayer, you can use any other mp3 player starting from command line
-			os.system("ping %s -c 1 > ping_data.txt" % host)
-			#if you would like to preserve the earlier data, write '>>' instead of '>'
-			time.sleep(1)
-			#for longer time to catch answer, use a bigger integer than '1'
+			os.system("mplayer sonar_ping.mp3") #instead of mplayer, you can use any other mp3 player starting from command line
+			os.system("ping %s -c 1 > ping_data.txt" % host) #if you would like to preserve the earlier data, write '>>' instead of '>'
+			time.sleep(1) #for a longer time to catch answer, use a bigger integer than '1'
 			os.system("mplayer sonar_ping_back.mp3")
 			os.system("cat ping_data.txt")
 	except:
 		print("Something went wrong. Please, try it later.")
 
 def report(event):
-	os.system("nano ping_data.txt")
-	#if you like, instead of nano, can use your favorite editor
+	os.system("nano ping_data.txt")	#if you like can use your favorite editor instead of nano
 
 def quit(event):
 	window.destroy()
