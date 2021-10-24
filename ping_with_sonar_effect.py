@@ -25,8 +25,10 @@ def ping(event):
 	try:
 		ping_message = []
 		ping_message.append(os.system("ping %s -c 1" % host))
-		if ping_message.__contains__(512) or ping_message.__contains__(256): #These numbers are ping error codes. 
-			print("Input data error. Please, give a real hostname or IP!")
+		if ping_message.__contains__(512):
+			print("Please, give a real hostname or check your internet connection!") # Ping error code 512
+		elif ping_message.__contains__(256):
+			print("The host seems down. No answer.") # Ping error code 256
 		else:
 			os.system("mplayer sonar_ping.mp3") #instead of mplayer, you can use any other mp3 player starting from command line
 			os.system("ping %s -c 1 > ping_data.txt" % host) #if you would like to preserve the earlier data, write '>>' instead of '>'
